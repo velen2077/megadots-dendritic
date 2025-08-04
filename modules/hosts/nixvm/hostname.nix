@@ -1,5 +1,5 @@
 {
-  configurations.nixos.nixvm.module = {
+  flake.modules.nixos."hosts/nixvm" = {
     networking.hostName = "nixvm";
   };
 }

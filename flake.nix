@@ -1,160 +1,77 @@
 {
-  nixConfig = {
-    abort-on-warn = true;
-    extra-experimental-features = ["pipe-operators"];
-    allow-import-from-derivation = false;
-  };
-
-  inputs.self.submodules = true;
+  description = "My Nix infrastructure at home";
 
   inputs = {
-    cpu-microcodes = {
-      flake = false;
-      url = "github:platomav/CPUMicrocodes";
-    };
+    nixpkgs.url = "github:/nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-unstable.url = "github:/nixos/nixpkgs/nixpkgs-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nur.url = "github:nix-community/NUR";
+
+    systems.url = "github:nix-systems/default";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-oracle-db.url = "github:drupol/nix-oracle-db";
+
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-webapps.url = "github:TLATER/nix-webapps";
+
+    import-tree.url = "github:vic/import-tree";
+
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    make-shell.url = "github:nicknovitski/make-shell";
+
+    lazy-apps = {
+      url = "sourcehut:~rycee/lazy-apps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    files.url = "github:mightyiam/files";
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        flake-compat.follows = "dedupe_flake-compat";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    import-tree.url = "github:vic/import-tree";
-
-    input-branches.url = "github:mightyiam/input-branches";
-
-    make-shell = {
-      url = "github:nicknovitski/make-shell";
-      inputs.flake-compat.follows = "dedupe_flake-compat";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs-docs.follows = "nixpkgs";
-        nixpkgs-for-bootstrap.follows = "nixpkgs";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        nuschtosSearch.follows = "dedupe_nuschtos-search";
-      };
-    };
-
-    refjump-nvim = {
-      flake = false;
-      url = "github:mawkler/refjump.nvim";
-    };
-
-    sink-rotate = {
-      url = "github:mightyiam/sink-rotate";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "dedupe_systems";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    smart-scrolloff-nvim = {
-      flake = false;
-      url = "github:tonymajestro/smart-scrolloff.nvim";
-    };
-
+    # Sylix for theming.
     stylix.url = "github:nix-community/stylix";
-
-    tinted-schemes = {
-      flake = false;
-      url = "github:tinted-theming/schemes";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
+    # Firefox addons to support my Firefox
+    # Home Manager module. These allow installation
+    # of Firefox Extensions such as uBlock Origin.
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    ucodenix = {
-      url = "github:e-tho/ucodenix";
-      inputs.cpu-microcodes.follows = "cpu-microcodes";
+    # Spicetify customised Spotify client.
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    # COSMIC Desktop Environment.
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    vim-autoread = {
-      flake = false;
-      url = "github:djoshea/vim-autoread/24061f84652d768bfb85d222c88580b3af138dab";
-    };
-
-    zsh-auto-notify = {
-      flake = false;
-      url = "github:MichaelAquilina/zsh-auto-notify";
+    # niri Window Manager.
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  # _additional_ `inputs` only for deduplication
-  inputs = {
-    dedupe_flake-compat.url = "github:edolstra/flake-compat";
-
-    dedupe_flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "dedupe_systems";
-    };
-
-    dedupe_nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    dedupe_nuschtos-search = {
-      url = "github:NuschtOS/search";
-      inputs = {
-        flake-utils.follows = "dedupe_flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    dedupe_systems.url = "github:nix-systems/default";
-  };
-
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [(inputs.import-tree ./modules)];
-
-      _module.args.rootPath = ./.;
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }

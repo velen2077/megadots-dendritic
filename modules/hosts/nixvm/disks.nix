@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  configurations.nixos.nixvm.module = {
+  flake.modules.nixos."hosts/nixvm" = {
     # Disk configuration file for disko for the host 'nixvm'.
     # There are some specific configurations in this disko
     # file that are needed for my impermanence setup to work.
