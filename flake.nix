@@ -19,32 +19,26 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-oracle-db.url = "github:drupol/nix-oracle-db";
+    #nix-oracle-db.url = "github:drupol/nix-oracle-db";
 
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-webapps.url = "github:TLATER/nix-webapps";
+    #nix-webapps.url = "github:TLATER/nix-webapps";
 
     import-tree.url = "github:vic/import-tree";
 
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    #nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    make-shell.url = "github:nicknovitski/make-shell";
-
-    lazy-apps = {
-      url = "sourcehut:~rycee/lazy-apps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     # Sylix for theming.
     stylix.url = "github:nix-community/stylix";

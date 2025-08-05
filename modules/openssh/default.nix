@@ -5,7 +5,9 @@ topLevel: {
     lib,
     ...
   }: let
+    #TODO: Need to make domain a var and not hardcoded.
     hosts = lib.attrNames topLevel.config.flake.nixosConfigurations;
+    domain = "extranet.casa";
   in {
     services = {
       openssh = {
@@ -32,6 +34,20 @@ topLevel: {
           }
         ];
       };
+    };
+
+    programs.ssh = {
+      # Each hosts public key.
+      knownHosts = lib.genAttrs hosts (hostname: {
+        publicKey = ../hosts/${hostname}/keys/ssh_host_ed25519_key.pub;
+        extraHostNames =
+          [
+            "${hostname}.${domain}"
+          ]
+          ++
+          # Alias for localhost if it's the same host.
+          (lib.optional (hostname == config.networking.hostName) "localhost");
+      });
     };
 
     # Passwordless sudo when SSH'ing with keys.
