@@ -39,7 +39,7 @@ topLevel: {
     programs.ssh = {
       # Each hosts public key.
       knownHosts = lib.genAttrs hosts (hostname: {
-        publicKey = ../hosts/${hostname}/keys/ssh_host_ed25519_key.pub;
+        publicKeyFile = ../hosts/${hostname}/keys/ssh_host_ed25519_key.pub;
         extraHostNames =
           [
             "${hostname}.${domain}"
