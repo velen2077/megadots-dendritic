@@ -4,4 +4,4 @@ nixvm-deploy:
 
 # Perform a rebuild of nixvm.
 nixvm-rebuild:
-    nixos-rebuild switch --flake .#nixvm --target-host velen2077@nixvm --sudo
+    nixos-rebuild switch --flake .#nixvm --target-host velen2077@nixvm --ask-sudo-password

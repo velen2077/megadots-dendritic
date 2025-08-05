@@ -5,7 +5,7 @@
       timeout = 15;
       systemd-boot = {
         enable = true;
-        configurationLimit = 10;
+        configurationLimit = 20;
       };
     };
   };

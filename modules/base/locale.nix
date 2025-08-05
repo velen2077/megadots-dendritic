@@ -1,5 +1,5 @@
 {
   flake.modules.nixos.base = {
-    time.timeZone = "Europe/Brussels";
+    time.timeZone = "Europe/London";
   };
 }

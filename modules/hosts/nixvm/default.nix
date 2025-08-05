@@ -3,26 +3,21 @@
     [
       # Modules
       base
-      ai
       gnome
-      dev
-      facter
       openssh
       shell
       vpn
 
       # Users
-      root
-      pol
+      velen2077
     ]
     # Specific Home-Manager modules
     ++ [
       {
-        home-manager.users.pol.imports = with config.flake.modules.homeManager; [
+        home-manager.users.velen2077.imports = with config.flake.modules.homeManager; [
           base
           gnome
           dev
-          facter
           shell
         ];
       }
