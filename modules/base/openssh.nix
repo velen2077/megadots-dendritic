@@ -1,5 +1,5 @@
 topLevel: {
-  flake.modules.nixos.openssh = {
+  flake.modules.nixos.base = {
     config,
     hostConfig,
     lib,

@@ -4,7 +4,7 @@
       # Modules
       base
       gnome
-      openssh
+      #openssh
       shell
       vpn
 
