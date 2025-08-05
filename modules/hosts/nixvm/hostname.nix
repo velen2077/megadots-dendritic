@@ -1,5 +1,7 @@
 {
-  flake.modules.nixos."hosts/nixvm" = {
-    networking.hostName = "nixvm";
+  unify.hosts.nixos.nixvm = {
+    nixos = {
+      networking.hostName = "nixvm";
+    };
   };
 }

@@ -1,12 +1,11 @@
 topLevel: {
-  flake.modules.nixos.base = {
+  unify.modules.base.nixos = {
     config,
-    hostConfig,
     lib,
     ...
   }: let
     #TODO: Need to make domain a var and not hardcoded.
-    hosts = lib.attrNames topLevel.config.flake.nixosConfigurations;
+    hosts = lib.attrNames topLevel.config.unify.hosts.nixos;
     domain = "extranet.casa";
   in {
     services = {
@@ -30,7 +29,7 @@ topLevel: {
           {
             path = "/etc/ssh/ssh_host_ed25519_key";
             type = "ed25519";
-            comment = hostConfig.name;
+            comment = config.networking.hostName;
           }
         ];
       };
@@ -39,10 +38,10 @@ topLevel: {
     programs.ssh = {
       # Each hosts public key.
       knownHosts = lib.genAttrs hosts (hostname: {
-        publicKeyFile = ../hosts/${hostname}/keys/ssh_host_ed25519_key.pub;
+        publicKey = topLevel.config.unify.hosts.nixos.${hostname}.hostKey;
         extraHostNames =
           [
-            "${hostname}.${domain}"
+            topLevel.config.unify.hosts.nixos.${hostname}.fqdn
           ]
           ++
           # Alias for localhost if it's the same host.

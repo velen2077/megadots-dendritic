@@ -22,9 +22,6 @@
             inherit system;
           };
         })
-        inputs.nix-webapps.overlays.lib
-        # inputs.deploy-rs.overlays.default
-        # (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
       ];
     };
   };

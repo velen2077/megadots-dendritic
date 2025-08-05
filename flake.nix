@@ -31,7 +31,7 @@
     #nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
-
+    make-shell.url = "github:nicknovitski/make-shell";
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +60,12 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    unify = {
+      url = "git+https://codeberg.org/quasigod/unify";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 

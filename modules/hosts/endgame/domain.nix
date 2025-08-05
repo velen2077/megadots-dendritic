@@ -1,5 +1,7 @@
 {
-  flake.modules.nixos."hosts/endgame" = {
-    networking.domain = "extranet.casa";
+  unify.hosts.nixos.endgame = {
+    nixos = {
+      networking.domain = "extranet.casa";
+    };
   };
 }

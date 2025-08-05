@@ -3,5 +3,5 @@
     type = with lib.types; lazyAttrsOf anything;
   };
 
-  #config.flake.meta.uri = "github:drupol/infra";
+  config.flake.meta.uri = "github:velen2077/megadots";
 }

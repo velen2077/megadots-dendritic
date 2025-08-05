@@ -1,5 +1,7 @@
 {
-  flake.modules.nixos."hosts/nixvm" = {
-    networking.domain = "extranet.casa";
+  unify.hosts.nixos.nixvm = {
+    nixos = {
+      networking.domain = "extranet.casa";
+    };
   };
 }

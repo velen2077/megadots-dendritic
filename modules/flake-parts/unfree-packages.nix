@@ -1,26 +1,26 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.nixpkgs.allowedUnfreePackages = lib.mkOption {
     type = lib.types.listOf lib.types.str;
-    default = [ ];
+    default = [];
   };
 
-  config.flake = {
-    modules =
-      let
-        predicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
-      in
-      {
-        nixos.base.nixpkgs.config.allowUnfreePredicate = predicate;
+  config = {
+    unify.modules = let
+      predicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
+    in {
+      base.nixos.nixpkgs.config.allowUnfreePredicate = predicate;
 
-        homeManager.base = _args: {
-          nixpkgs.config = {
-            allowUnfreePredicate = predicate;
-          };
+      base.home = _args: {
+        nixpkgs.config = {
+          allowUnfreePredicate = predicate;
         };
       };
+    };
 
-    meta.nixpkgs.allowedUnfreePackages = config.nixpkgs.allowedUnfreePackages;
+    flake.meta.nixpkgs.allowedUnfreePackages = config.nixpkgs.allowedUnfreePackages;
   };
-
 }

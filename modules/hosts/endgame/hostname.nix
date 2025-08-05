@@ -1,5 +1,7 @@
 {
-  flake.modules.nixos."hosts/endgame" = {
-    networking.hostName = "endgame";
+  unify.hosts.nixos.endgame = {
+    nixos = {
+      networking.hostName = "endgame";
+    };
   };
 }
