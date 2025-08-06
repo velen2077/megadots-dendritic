@@ -40,6 +40,11 @@
                   content = {
                     type = "btrfs";
                     extraArgs = ["-L" "nixos" "-f"];
+                    postCreateHook = ''
+                      mount -t btrfs /dev/disk/by-label/nixos /mnt
+                      btrfs subvolume snapshot -r /mnt /mnt/root-blank
+                      umount /mnt
+                    '';
                     subvolumes = {
                       "/root" = {
                         mountpoint = "/";
@@ -65,6 +70,14 @@
                           "noatime"
                         ];
                       };
+                      "/persist" = {
+                        mountpoint = "/persist";
+                        mountOptions = [
+                          "subvol=persist"
+                          "compress=zstd"
+                          "noatime"
+                        ];
+                      };
                     };
                   };
                 };
@@ -73,7 +86,7 @@
           };
         };
       };
-      #fileSystems."/persist".neededForBoot = true;
+      fileSystems."/persist".neededForBoot = true;
     };
   };
 }

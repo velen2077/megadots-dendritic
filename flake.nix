@@ -40,6 +40,8 @@
       url = "github:nix-community/impermanence";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    #inputs.nixpkgs.follows = "nixpkgs";
+
     # Sylix for theming.
     stylix.url = "github:nix-community/stylix";
     # Firefox addons to support my Firefox
