@@ -33,5 +33,18 @@
     };
 
     nix.settings.trusted-users = [config.flake.meta.users.velen2077.username];
+
+    home-manager.users.velen2077 = {
+      home.file = {
+        ".face" = {
+          source = ../../assets/home/velen2077/.face;
+          recursive = true;
+        };
+        ".face.icon" = {
+          source = ../../assets/home/velen2077/.face;
+          recursive = true;
+        };
+      };
+    };
   };
 }
