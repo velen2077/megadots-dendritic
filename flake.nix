@@ -36,10 +36,7 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
+    impermanence.url = "github:nix-community/impermanence/home-manager-v2";
     #inputs.nixpkgs.follows = "nixpkgs";
 
     # Sylix for theming.

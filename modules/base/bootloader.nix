@@ -2,6 +2,7 @@
   unify.modules.base = {
     nixos = {
       boot = {
+        initrd.systemd.enable = true;
         loader = {
           efi.canTouchEfiVariables = true;
           timeout = 15;

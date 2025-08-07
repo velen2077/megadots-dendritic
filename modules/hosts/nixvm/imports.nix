@@ -4,6 +4,8 @@
 
     modules = with config.unify.modules; [
       base
+      gnome
+      impermanence
       velen2077
     ];
 

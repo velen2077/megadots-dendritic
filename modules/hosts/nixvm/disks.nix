@@ -62,14 +62,6 @@
                           "noatime"
                         ];
                       };
-                      "/home" = {
-                        mountpoint = "/home";
-                        mountOptions = [
-                          "subvol=home"
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
                       "/persist" = {
                         mountpoint = "/persist";
                         mountOptions = [
